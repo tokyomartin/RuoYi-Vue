@@ -8,14 +8,14 @@ set JVM_OPTS="-Dname=%AppName%  -Duser.timezone=Asia/Shanghai -Xms512M -Xmx512M 
 
 
 ECHO. 
-	ECHO.  [1] 启动%AppName%
-	ECHO.  [2] 关闭%AppName%
-	ECHO.  [3] 重启%AppName%
-	ECHO.  [4] 启动状态 %AppName%
-	ECHO.  [5] 退 出 
+	ECHO.  [1] START %AppName%
+	ECHO.  [2] CLOSE %AppName%
+	ECHO.  [3] RESTART %AppName%
+	ECHO.  [4] RUN STATUS %AppName%
+	ECHO.  [5] EXIT 
 ECHO. 
 
-ECHO.请输入选择项目的序号:
+ECHO.PLEASE SELECT THE NUMBER:
 set /p ID=
 	IF "%id%"=="1" GOTO start 
 	IF "%id%"=="2" GOTO stop 

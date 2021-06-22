@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TUserMapper">
+    
+    <resultMap type="TUser" id="TUserResult">
+        <result property="id"    column="id"    />
+        <result property="Uid"    column="_uid"    />
+        <result property="Name"    column="_name"    />
+        <result property="DisplayName"    column="_display_name"    />
+        <result property="Gender"    column="_gender"    />
+        <result property="Portrait"    column="_portrait"    />
+        <result property="Mobile"    column="_mobile"    />
+        <result property="Email"    column="_email"    />
+        <result property="Address"    column="_address"    />
+        <result property="Company"    column="_company"    />
+        <result property="Social"    column="_social"    />
+        <result property="PasswdMd5"    column="_passwd_md5"    />
+        <result property="Salt"    column="_salt"    />
+        <result property="Extra"    column="_extra"    />
+        <result property="Type"    column="_type"    />
+        <result property="Dt"    column="_dt"    />
+        <result property="Createtime"    column="_createTime"    />
+        <result property="Deleted"    column="_deleted"    />
+    </resultMap>
+
+    <sql id="selectTUserVo">
+        select id, _uid, _name, _display_name, _gender, _portrait, _mobile, _email, _address, _company, _social, _passwd_md5, _salt, _extra, _type, _dt, _createTime, _deleted from t_user
+    </sql>
+
+    <select id="selectTUserList" parameterType="TUser" resultMap="TUserResult">
+        <include refid="selectTUserVo"/>
+        <where>  
+            <if test="Uid != null  and Uid != ''"> and _uid = #{Uid}</if>
+            <if test="Name != null  and Name != ''"> and _name like concat('%', #{Name}, '%')</if>
+            <if test="DisplayName != null  and DisplayName != ''"> and _display_name like concat('%', #{DisplayName}, '%')</if>
+            <if test="Gender != null "> and _gender = #{Gender}</if>
+            <if test="Portrait != null  and Portrait != ''"> and _portrait = #{Portrait}</if>
+            <if test="Mobile != null  and Mobile != ''"> and _mobile = #{Mobile}</if>
+            <if test="Email != null  and Email != ''"> and _email = #{Email}</if>
+            <if test="Address != null  and Address != ''"> and _address = #{Address}</if>
+            <if test="Company != null  and Company != ''"> and _company = #{Company}</if>
+            <if test="Social != null  and Social != ''"> and _social = #{Social}</if>
+            <if test="PasswdMd5 != null  and PasswdMd5 != ''"> and _passwd_md5 = #{PasswdMd5}</if>
+            <if test="Salt != null  and Salt != ''"> and _salt = #{Salt}</if>
+            <if test="Extra != null  and Extra != ''"> and _extra = #{Extra}</if>
+            <if test="Type != null "> and _type = #{Type}</if>
+            <if test="Dt != null "> and _dt = #{Dt}</if>
+            <if test="Createtime != null "> and _createTime = #{Createtime}</if>
+            <if test="Deleted != null "> and _deleted = #{Deleted}</if>
+        </where>
+    </select>
+    
+    <select id="selectTUserById" parameterType="Long" resultMap="TUserResult">
+        <include refid="selectTUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTUser" parameterType="TUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="Uid != null and Uid != ''">_uid,</if>
+            <if test="Name != null">_name,</if>
+            <if test="DisplayName != null">_display_name,</if>
+            <if test="Gender != null">_gender,</if>
+            <if test="Portrait != null">_portrait,</if>
+            <if test="Mobile != null">_mobile,</if>
+            <if test="Email != null">_email,</if>
+            <if test="Address != null">_address,</if>
+            <if test="Company != null">_company,</if>
+            <if test="Social != null">_social,</if>
+            <if test="PasswdMd5 != null">_passwd_md5,</if>
+            <if test="Salt != null">_salt,</if>
+            <if test="Extra != null">_extra,</if>
+            <if test="Type != null">_type,</if>
+            <if test="Dt != null">_dt,</if>
+            <if test="Createtime != null">_createTime,</if>
+            <if test="Deleted != null">_deleted,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="Uid != null and Uid != ''">#{Uid},</if>
+            <if test="Name != null">#{Name},</if>
+            <if test="DisplayName != null">#{DisplayName},</if>
+            <if test="Gender != null">#{Gender},</if>
+            <if test="Portrait != null">#{Portrait},</if>
+            <if test="Mobile != null">#{Mobile},</if>
+            <if test="Email != null">#{Email},</if>
+            <if test="Address != null">#{Address},</if>
+            <if test="Company != null">#{Company},</if>
+            <if test="Social != null">#{Social},</if>
+            <if test="PasswdMd5 != null">#{PasswdMd5},</if>
+            <if test="Salt != null">#{Salt},</if>
+            <if test="Extra != null">#{Extra},</if>
+            <if test="Type != null">#{Type},</if>
+            <if test="Dt != null">#{Dt},</if>
+            <if test="Createtime != null">#{Createtime},</if>
+            <if test="Deleted != null">#{Deleted},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTUser" parameterType="TUser">
+        update t_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="Uid != null and Uid != ''">_uid = #{Uid},</if>
+            <if test="Name != null">_name = #{Name},</if>
+            <if test="DisplayName != null">_display_name = #{DisplayName},</if>
+            <if test="Gender != null">_gender = #{Gender},</if>
+            <if test="Portrait != null">_portrait = #{Portrait},</if>
+            <if test="Mobile != null">_mobile = #{Mobile},</if>
+            <if test="Email != null">_email = #{Email},</if>
+            <if test="Address != null">_address = #{Address},</if>
+            <if test="Company != null">_company = #{Company},</if>
+            <if test="Social != null">_social = #{Social},</if>
+            <if test="PasswdMd5 != null">_passwd_md5 = #{PasswdMd5},</if>
+            <if test="Salt != null">_salt = #{Salt},</if>
+            <if test="Extra != null">_extra = #{Extra},</if>
+            <if test="Type != null">_type = #{Type},</if>
+            <if test="Dt != null">_dt = #{Dt},</if>
+            <if test="Createtime != null">_createTime = #{Createtime},</if>
+            <if test="Deleted != null">_deleted = #{Deleted},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTUserById" parameterType="Long">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <delete id="deleteTUserByIds" parameterType="String">
+        delete from t_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

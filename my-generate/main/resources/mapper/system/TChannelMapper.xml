@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TChannelMapper">
+    
+    <resultMap type="TChannel" id="TChannelResult">
+        <result property="id"    column="id"    />
+        <result property="Cid"    column="_cid"    />
+        <result property="Name"    column="_name"    />
+        <result property="Portrait"    column="_portrait"    />
+        <result property="Owner"    column="_owner"    />
+        <result property="Status"    column="_status"    />
+        <result property="Desc"    column="_desc"    />
+        <result property="Secret"    column="_secret"    />
+        <result property="Callback"    column="_callback"    />
+        <result property="Extra"    column="_extra"    />
+        <result property="Automatic"    column="_automatic"    />
+        <result property="Dt"    column="_dt"    />
+    </resultMap>
+
+    <sql id="selectTChannelVo">
+        select id, _cid, _name, _portrait, _owner, _status, _desc, _secret, _callback, _extra, _automatic, _dt from t_channel
+    </sql>
+
+    <select id="selectTChannelList" parameterType="TChannel" resultMap="TChannelResult">
+        <include refid="selectTChannelVo"/>
+        <where>  
+            <if test="Cid != null  and Cid != ''"> and _cid = #{Cid}</if>
+            <if test="Name != null  and Name != ''"> and _name like concat('%', #{Name}, '%')</if>
+            <if test="Portrait != null  and Portrait != ''"> and _portrait = #{Portrait}</if>
+            <if test="Owner != null  and Owner != ''"> and _owner = #{Owner}</if>
+            <if test="Status != null "> and _status = #{Status}</if>
+            <if test="Desc != null  and Desc != ''"> and _desc = #{Desc}</if>
+            <if test="Secret != null  and Secret != ''"> and _secret = #{Secret}</if>
+            <if test="Callback != null  and Callback != ''"> and _callback = #{Callback}</if>
+            <if test="Extra != null  and Extra != ''"> and _extra = #{Extra}</if>
+            <if test="Automatic != null "> and _automatic = #{Automatic}</if>
+            <if test="Dt != null "> and _dt = #{Dt}</if>
+        </where>
+    </select>
+    
+    <select id="selectTChannelById" parameterType="Long" resultMap="TChannelResult">
+        <include refid="selectTChannelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTChannel" parameterType="TChannel" useGeneratedKeys="true" keyProperty="id">
+        insert into t_channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="Cid != null and Cid != ''">_cid,</if>
+            <if test="Name != null">_name,</if>
+            <if test="Portrait != null">_portrait,</if>
+            <if test="Owner != null">_owner,</if>
+            <if test="Status != null">_status,</if>
+            <if test="Desc != null">_desc,</if>
+            <if test="Secret != null">_secret,</if>
+            <if test="Callback != null">_callback,</if>
+            <if test="Extra != null">_extra,</if>
+            <if test="Automatic != null">_automatic,</if>
+            <if test="Dt != null">_dt,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="Cid != null and Cid != ''">#{Cid},</if>
+            <if test="Name != null">#{Name},</if>
+            <if test="Portrait != null">#{Portrait},</if>
+            <if test="Owner != null">#{Owner},</if>
+            <if test="Status != null">#{Status},</if>
+            <if test="Desc != null">#{Desc},</if>
+            <if test="Secret != null">#{Secret},</if>
+            <if test="Callback != null">#{Callback},</if>
+            <if test="Extra != null">#{Extra},</if>
+            <if test="Automatic != null">#{Automatic},</if>
+            <if test="Dt != null">#{Dt},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTChannel" parameterType="TChannel">
+        update t_channel
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="Cid != null and Cid != ''">_cid = #{Cid},</if>
+            <if test="Name != null">_name = #{Name},</if>
+            <if test="Portrait != null">_portrait = #{Portrait},</if>
+            <if test="Owner != null">_owner = #{Owner},</if>
+            <if test="Status != null">_status = #{Status},</if>
+            <if test="Desc != null">_desc = #{Desc},</if>
+            <if test="Secret != null">_secret = #{Secret},</if>
+            <if test="Callback != null">_callback = #{Callback},</if>
+            <if test="Extra != null">_extra = #{Extra},</if>
+            <if test="Automatic != null">_automatic = #{Automatic},</if>
+            <if test="Dt != null">_dt = #{Dt},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTChannelById" parameterType="Long">
+        delete from t_channel where id = #{id}
+    </delete>
+
+    <delete id="deleteTChannelByIds" parameterType="String">
+        delete from t_channel where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
