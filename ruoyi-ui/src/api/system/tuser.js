@@ -1,52 +1,52 @@
 import request from '@/utils/request'
 
 // 查询【请填写功能名称】列表
-export function listChannel(query) {
+export function listTUser(query) {
   return request({
-    url: '/system/channel/list',
+    url: '/system/tuser/list',
     method: 'get',
     params: query
   })
 }
 
 // 查询【请填写功能名称】详细
-export function getChannel(id) {
+export function getTUser(id) {
   return request({
-    url: '/system/channel/' + id,
+    url: '/system/tuser/' + id,
     method: 'get'
   })
 }
 
 // 新增【请填写功能名称】
-export function addChannel(data) {
+export function addTUser(data) {
   return request({
-    url: '/system/channel',
+    url: '/system/tuser',
     method: 'post',
     data: data
   })
 }
 
 // 修改【请填写功能名称】
-export function updateChannel(data) {
+export function updateTUser(data) {
   return request({
-    url: '/system/channel',
+    url: '/system/tuser',
     method: 'put',
     data: data
   })
 }
 
 // 删除【请填写功能名称】
-export function delChannel(id) {
+export function delTUser(id) {
   return request({
-    url: '/system/channel/' + id,
+    url: '/system/tuser/' + id,
     method: 'delete'
   })
 }
 
 // 导出【请填写功能名称】
-export function exportChannel(query) {
+export function exportTUser(query) {
   return request({
-    url: '/system/channel/export',
+    url: '/system/tuser/export',
     method: 'get',
     params: query
   })

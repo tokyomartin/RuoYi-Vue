@@ -21,47 +21,48 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * 【请填写功能名称】Controller
+ * 聊天用户Controller
  * 
  * @author ruoyi
  * @date 2021-06-23
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/system/tuser")
 public class TUserController extends BaseController
 {
     @Autowired
     private ITUserService tUserService;
 
     /**
-     * 查询【请填写功能名称】列表
+     * 查询聊天用户列表
      */
-    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @PreAuthorize("@ss.hasPermi('system:tuser:list')")
     @GetMapping("/list")
     public TableDataInfo list(TUser tUser)
     {
+        System.out.println("---------tuserlist---------");
         startPage();
         List<TUser> list = tUserService.selectTUserList(tUser);
         return getDataTable(list);
     }
 
     /**
-     * 导出【请填写功能名称】列表
+     * 导出聊天用户列表
      */
-    @PreAuthorize("@ss.hasPermi('system:user:export')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.EXPORT)
+    @PreAuthorize("@ss.hasPermi('system:tuser:export')")
+    @Log(title = "聊天用户", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(TUser tUser)
     {
         List<TUser> list = tUserService.selectTUserList(tUser);
         ExcelUtil<TUser> util = new ExcelUtil<TUser>(TUser.class);
-        return util.exportExcel(list, "【请填写功能名称】数据");
+        return util.exportExcel(list, "聊天用户数据");
     }
 
     /**
-     * 获取【请填写功能名称】详细信息
+     * 获取聊天用户详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:user:query')")
+    @PreAuthorize("@ss.hasPermi('system:tuser:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -69,10 +70,10 @@ public class TUserController extends BaseController
     }
 
     /**
-     * 新增【请填写功能名称】
+     * 新增聊天用户
      */
-    @PreAuthorize("@ss.hasPermi('system:user:add')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.INSERT)
+    @PreAuthorize("@ss.hasPermi('system:tuser:add')")
+    @Log(title = "聊天用户", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TUser tUser)
     {
@@ -80,10 +81,10 @@ public class TUserController extends BaseController
     }
 
     /**
-     * 修改【请填写功能名称】
+     * 修改聊天用户
      */
-    @PreAuthorize("@ss.hasPermi('system:user:edit')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.UPDATE)
+    @PreAuthorize("@ss.hasPermi('system:tuser:edit')")
+    @Log(title = "聊天用户", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody TUser tUser)
     {
@@ -91,10 +92,10 @@ public class TUserController extends BaseController
     }
 
     /**
-     * 删除【请填写功能名称】
+     * 删除聊天用户
      */
-    @PreAuthorize("@ss.hasPermi('system:user:remove')")
-    @Log(title = "【请填写功能名称】", businessType = BusinessType.DELETE)
+    @PreAuthorize("@ss.hasPermi('system:tuser:remove')")
+    @Log(title = "聊天用户", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {

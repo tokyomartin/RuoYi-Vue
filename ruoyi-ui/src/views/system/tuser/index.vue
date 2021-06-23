@@ -1,130 +1,123 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="用户UID" prop="Uid">
+      <el-form-item label="用户UID" prop="uid">
         <el-input
-          v-model="queryParams.Uid"
+          v-model="queryParams.uid"
           placeholder="请输入用户UID"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="用户名" prop="Name">
+      <el-form-item label="用户名" prop="name">
         <el-input
-          v-model="queryParams.Name"
+          v-model="queryParams.name"
           placeholder="请输入用户名"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="用户显示昵称" prop="DisplayName">
+      <el-form-item label="用户显示昵称" prop="displayName">
         <el-input
-          v-model="queryParams.DisplayName"
+          v-model="queryParams.displayName"
           placeholder="请输入用户显示昵称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="性别" prop="Gender">
+      <el-form-item label="性别" prop="gender">
         <el-input
-          v-model="queryParams.Gender"
+          v-model="queryParams.gender"
           placeholder="请输入性别"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="手机号" prop="Mobile">
+      <el-form-item label="手机号" prop="mobile">
         <el-input
-          v-model="queryParams.Mobile"
+          v-model="queryParams.mobile"
           placeholder="请输入手机号"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="邮件" prop="Email">
+      <el-form-item label="邮件" prop="email">
         <el-input
-          v-model="queryParams.Email"
+          v-model="queryParams.email"
           placeholder="请输入邮件"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="地址" prop="Address">
+      <el-form-item label="地址" prop="address">
         <el-input
-          v-model="queryParams.Address"
+          v-model="queryParams.address"
           placeholder="请输入地址"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="公司名" prop="Company">
+      <el-form-item label="公司名" prop="company">
         <el-input
-          v-model="queryParams.Company"
+          v-model="queryParams.company"
           placeholder="请输入公司名"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="社交" prop="Social">
+      <el-form-item label="社交" prop="social">
         <el-input
-          v-model="queryParams.Social"
+          v-model="queryParams.social"
           placeholder="请输入社交"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="密码" prop="PasswdMd5">
+      <el-form-item label="密码" prop="passwdMd5">
         <el-input
-          v-model="queryParams.PasswdMd5"
+          v-model="queryParams.passwdMd5"
           placeholder="请输入密码"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="密码salt" prop="Salt">
+      <el-form-item label="密码salt" prop="salt">
         <el-input
-          v-model="queryParams.Salt"
+          v-model="queryParams.salt"
           placeholder="请输入密码salt"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="用户类型" prop="Type">
-        <el-select v-model="queryParams.Type" placeholder="请选择用户类型" clearable size="small">
+      <el-form-item label="用户类型" prop="type">
+        <el-select v-model="queryParams.type" placeholder="请选择用户类型" clearable size="small">
           <el-option label="请选择字典生成" value="" />
         </el-select>
       </el-form-item>
-      <el-form-item label="时间" prop="Dt">
+      <el-form-item label="时间" prop="dt">
         <el-input
-          v-model="queryParams.Dt"
+          v-model="queryParams.dt"
           placeholder="请输入时间"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="创建时间" prop="Createtime">
-        <el-date-picker clearable size="small"
-          v-model="queryParams.Createtime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="选择创建时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="删除" prop="Deleted">
+
+      <el-form-item label="删除" prop="deleted">
         <el-input
-          v-model="queryParams.Deleted"
+          v-model="queryParams.deleted"
           placeholder="请输入删除"
           clearable
           size="small"
@@ -187,27 +180,23 @@
     <el-table v-loading="loading" :data="userList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="用户ID" align="center" prop="id" />
-      <el-table-column label="用户UID" align="center" prop="Uid" />
-      <el-table-column label="用户名" align="center" prop="Name" />
-      <el-table-column label="用户显示昵称" align="center" prop="DisplayName" />
-      <el-table-column label="性别" align="center" prop="Gender" />
-      <el-table-column label="用户portrait" align="center" prop="Portrait" />
-      <el-table-column label="手机号" align="center" prop="Mobile" />
-      <el-table-column label="邮件" align="center" prop="Email" />
-      <el-table-column label="地址" align="center" prop="Address" />
-      <el-table-column label="公司名" align="center" prop="Company" />
-      <el-table-column label="社交" align="center" prop="Social" />
-      <el-table-column label="密码" align="center" prop="PasswdMd5" />
-      <el-table-column label="密码salt" align="center" prop="Salt" />
-      <el-table-column label="额外的" align="center" prop="Extra" />
-      <el-table-column label="用户类型" align="center" prop="Type" />
-      <el-table-column label="时间" align="center" prop="Dt" />
-      <el-table-column label="创建时间" align="center" prop="Createtime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.Createtime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="删除" align="center" prop="Deleted" />
+      <el-table-column label="用户UID" align="center" prop="uid" />
+      <el-table-column label="用户名" align="center" prop="name" />
+      <el-table-column label="用户显示昵称" align="center" prop="displayName" />
+      <el-table-column label="性别" align="center" prop="gender" />
+      <el-table-column label="用户portrait" align="center" prop="portrait" />
+      <el-table-column label="手机号" align="center" prop="mobile" />
+      <el-table-column label="邮件" align="center" prop="email" />
+      <el-table-column label="地址" align="center" prop="address" />
+      <el-table-column label="公司名" align="center" prop="company" />
+      <el-table-column label="社交" align="center" prop="social" />
+<!--      <el-table-column label="密码" align="center" prop="passwdMd5" />-->
+<!--      <el-table-column label="密码salt" align="center" prop="salt" />-->
+      <el-table-column label="额外的" align="center" prop="extra" />
+      <el-table-column label="用户类型" align="center" prop="type" />
+      <el-table-column label="时间" align="center" prop="dt" />
+
+      <el-table-column label="删除" align="center" prop="deleted" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -227,7 +216,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -239,14 +228,14 @@
     <!-- 添加或修改【请填写功能名称】对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="用户UID" prop="Uid">
-          <el-input v-model="form.Uid" placeholder="请输入用户UID" />
+        <el-form-item label="用户UID" prop="uid">
+          <el-input v-model="form.uid" placeholder="请输入用户UID" />
         </el-form-item>
         <el-form-item label="用户名" prop="Name">
           <el-input v-model="form.Name" placeholder="请输入用户名" />
         </el-form-item>
-        <el-form-item label="用户显示昵称" prop="DisplayName">
-          <el-input v-model="form.DisplayName" placeholder="请输入用户显示昵称" />
+        <el-form-item label="用户显示昵称" prop="displayName">
+          <el-input v-model="form.displayName" placeholder="请输入用户显示昵称" />
         </el-form-item>
         <el-form-item label="性别" prop="Gender">
           <el-input v-model="form.Gender" placeholder="请输入性别" />
@@ -269,12 +258,14 @@
         <el-form-item label="社交" prop="Social">
           <el-input v-model="form.Social" placeholder="请输入社交" />
         </el-form-item>
-        <el-form-item label="密码" prop="PasswdMd5">
-          <el-input v-model="form.PasswdMd5" placeholder="请输入密码" />
-        </el-form-item>
-        <el-form-item label="密码salt" prop="Salt">
-          <el-input v-model="form.Salt" placeholder="请输入密码salt" />
-        </el-form-item>
+
+<!--        <el-form-item label="密码" prop="PasswdMd5"> -->
+<!--          <el-input v-model="form.PasswdMd5" placeholder="请输入密码" /> -->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="密码salt" prop="Salt"> -->
+<!--          <el-input v-model="form.Salt" placeholder="请输入密码salt" /> -->
+<!--        </el-form-item> -->
+
         <el-form-item label="额外的" prop="Extra">
           <el-input v-model="form.Extra" type="textarea" placeholder="请输入内容" />
         </el-form-item>
@@ -283,12 +274,13 @@
             <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
-        <el-form-item label="时间" prop="Dt">
-          <el-input v-model="form.Dt" placeholder="请输入时间" />
+        <el-form-item label="时间" prop="dt">
+          <el-input v-model="form.dt" placeholder="请输入时间" />
         </el-form-item>
-        <el-form-item label="删除" prop="Deleted">
-          <el-input v-model="form.Deleted" placeholder="请输入删除" />
+        <el-form-item label="删除" prop="deleted">
+          <el-input v-model="form.deleted" placeholder="请输入删除" />
         </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -299,10 +291,10 @@
 </template>
 
 <script>
-import { listUser, getUser, delUser, addUser, updateUser, exportUser } from "@/api/system/user";
+import { listTUser, getTUser, delTUser, addTUser, updateTUser, exportTUser } from "@/api/system/tuser";
 
 export default {
-  name: "User",
+  name: "TUser",
   components: {
   },
   data() {
@@ -331,40 +323,38 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        Uid: null,
-        Name: null,
-        DisplayName: null,
-        Gender: null,
-        Portrait: null,
-        Mobile: null,
-        Email: null,
-        Address: null,
-        Company: null,
-        Social: null,
-        PasswdMd5: null,
-        Salt: null,
-        Extra: null,
-        Type: null,
-        Dt: null,
-        Createtime: null,
-        Deleted: null
+        uid: null,
+        name: null,
+        displayName: null,
+        gender: null,
+        portrait: null,
+        mobile: null,
+        email: null,
+        address: null,
+        company: null,
+        social: null,
+        passwdMd5: null,
+        salt: null,
+        extra: null,
+        type: null,
+        dt: null,
+
+        deleted: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        Uid: [
+        uid: [
           { required: true, message: "用户UID不能为空", trigger: "blur" }
         ],
-        Gender: [
+        gender: [
           { required: true, message: "性别不能为空", trigger: "blur" }
         ],
-        Dt: [
+        dt: [
           { required: true, message: "时间不能为空", trigger: "blur" }
         ],
-        Createtime: [
-          { required: true, message: "创建时间不能为空", trigger: "blur" }
-        ],
+
       }
     };
   },
@@ -375,7 +365,8 @@ export default {
     /** 查询【请填写功能名称】列表 */
     getList() {
       this.loading = true;
-      listUser(this.queryParams).then(response => {
+	  console.log("--------listTUser------------");
+      listTUser(this.queryParams).then(response => {
         this.userList = response.rows;
         this.total = response.total;
         this.loading = false;
@@ -390,23 +381,23 @@ export default {
     reset() {
       this.form = {
         id: null,
-        Uid: null,
-        Name: null,
-        DisplayName: null,
-        Gender: null,
-        Portrait: null,
-        Mobile: null,
-        Email: null,
-        Address: null,
-        Company: null,
-        Social: null,
-        PasswdMd5: null,
-        Salt: null,
-        Extra: null,
-        Type: null,
-        Dt: null,
-        Createtime: null,
-        Deleted: null
+        uid: null,
+        name: null,
+        displayName: null,
+        gender: null,
+        portrait: null,
+        mobile: null,
+        email: null,
+        address: null,
+        company: null,
+        social: null,
+        passwdMd5: null,
+        salt: null,
+        extra: null,
+        type: null,
+        dt: null,
+
+        deleted: null
       };
       this.resetForm("form");
     },
@@ -436,7 +427,7 @@ export default {
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
-      getUser(id).then(response => {
+      getTUser(id).then(response => {
         this.form = response.data;
         this.open = true;
         this.title = "修改【请填写功能名称】";
@@ -447,13 +438,13 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
-            updateUser(this.form).then(response => {
+            updateTUser(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addUser(this.form).then(response => {
+            addTUser(this.form).then(response => {
               this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -470,7 +461,7 @@ export default {
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delUser(ids);
+          return delTUser(ids);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");

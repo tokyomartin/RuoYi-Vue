@@ -255,7 +255,7 @@ public class TUser extends BaseEntity
             .append("Extra", getExtra())
             .append("Type", getType())
             .append("Dt", getDt())
-            .append("Createtime", getCreatetime())
+      //      .append("Createtime", getCreatetime())
             .append("Deleted", getDeleted())
             .toString();
     }

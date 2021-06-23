@@ -21,12 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="Extra"    column="_extra"    />
         <result property="Type"    column="_type"    />
         <result property="Dt"    column="_dt"    />
-        <result property="Createtime"    column="_createTime"    />
+<!--        <result property="Createtime"    column="_createTime"    />-->
         <result property="Deleted"    column="_deleted"    />
     </resultMap>
 
     <sql id="selectTUserVo">
-        select id, _uid, _name, _display_name, _gender, _portrait, _mobile, _email, _address, _company, _social, _passwd_md5, _salt, _extra, _type, _dt, _createTime, _deleted from t_user
+        select id, _uid, _name, _display_name, _gender, _portrait, _mobile, _email, _address, _company, _social, _passwd_md5, _salt, _extra, _type, _dt, _deleted from t_user
     </sql>
 
     <select id="selectTUserList" parameterType="TUser" resultMap="TUserResult">
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="Extra != null  and Extra != ''"> and _extra = #{Extra}</if>
             <if test="Type != null "> and _type = #{Type}</if>
             <if test="Dt != null "> and _dt = #{Dt}</if>
-            <if test="Createtime != null "> and _createTime = #{Createtime}</if>
+
             <if test="Deleted != null "> and _deleted = #{Deleted}</if>
         </where>
     </select>
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="Extra != null">_extra,</if>
             <if test="Type != null">_type,</if>
             <if test="Dt != null">_dt,</if>
-            <if test="Createtime != null">_createTime,</if>
+
             <if test="Deleted != null">_deleted,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -94,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="Extra != null">#{Extra},</if>
             <if test="Type != null">#{Type},</if>
             <if test="Dt != null">#{Dt},</if>
-            <if test="Createtime != null">#{Createtime},</if>
+
             <if test="Deleted != null">#{Deleted},</if>
          </trim>
     </insert>
@@ -117,7 +117,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="Extra != null">_extra = #{Extra},</if>
             <if test="Type != null">_type = #{Type},</if>
             <if test="Dt != null">_dt = #{Dt},</if>
-            <if test="Createtime != null">_createTime = #{Createtime},</if>
+
             <if test="Deleted != null">_deleted = #{Deleted},</if>
         </trim>
         where id = #{id}
